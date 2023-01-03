@@ -58,11 +58,8 @@ namespace AI_Functions
             AnalyzeActionsOperation operation = await client.StartAnalyzeActionsAsync(batchInput, actions);
             await operation.WaitForCompletionAsync();
             // View operation status.
-            summarizedText += $"AnalyzeActions operation has completed" + Newline();
-            summarizedText += $"Created On   : {operation.CreatedOn}" + Newline();
-            summarizedText += $"Expires On   : {operation.ExpiresOn}" + Newline();
-            summarizedText += $"Id           : {operation.Id}" + Newline();
-            summarizedText += $"Status       : {operation.Status}" + Newline();
+            summarizedText += $"Id: {operation.Id}" + Newline();
+            summarizedText += $"Status: {operation.Status}" + Newline();
 
             // View operation results.
             await foreach (AnalyzeActionsResult documentsInPage in operation.Value)
@@ -89,12 +86,12 @@ namespace AI_Functions
                             continue;
                         }
 
-                        summarizedText += $"  Extracted the following {documentResults.Sentences.Count} sentence(s):" + Newline();
+                        summarizedText += $"Extracted {documentResults.Sentences.Count} sentence(s):" + Newline();
 
 
                         foreach (SummarySentence sentence in documentResults.Sentences)
                         {
-                            summarizedText += $"  Sentence: {sentence.Text}" + Newline();
+                            summarizedText += $"{sentence.Text}" + Newline();
                         }
                     }
                 }
