@@ -3,6 +3,7 @@ using System.Net;
 using System.Text.Json.Nodes;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
+using Microsoft.Azure.Functions.Worker.Http;
 using HtmlAgilityPack;
 
 namespace Articles.Function
@@ -16,6 +17,14 @@ namespace Articles.Function
             _logger = loggerFactory.CreateLogger<Extractor>();
         }
         static HttpClient client = new HttpClient();
+        /*
+        [Function("load")]
+        [BlobOutput("articles-text-input/loaded.txt", Connection = "StorageConnectionString")]
+        public static async Task<List<string>> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req, FunctionContext context)
+        {
+            req.Body
+        }
+        */
 
         [Function("extractor")]
         [BlobOutput("articles-text-input/{rand-guid}.txt", Connection = "StorageConnectionString")]
