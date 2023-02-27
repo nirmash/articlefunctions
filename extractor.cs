@@ -17,14 +17,6 @@ namespace Articles.Function
             _logger = loggerFactory.CreateLogger<Extractor>();
         }
         static HttpClient client = new HttpClient();
-        /*
-        [Function("load")]
-        [BlobOutput("articles-text-input/loaded.txt", Connection = "StorageConnectionString")]
-        public static async Task<List<string>> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req, FunctionContext context)
-        {
-            req.Body
-        }
-        */
 
         [Function("extractor")]
         [BlobOutput("articles-text-input/{rand-guid}.txt", Connection = "StorageConnectionString")]

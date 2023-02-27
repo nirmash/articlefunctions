@@ -19,7 +19,7 @@ namespace AI_Functions
         }
 
         [Function("summarize_function")]
-        [BlobOutput("articles-text-output/output.txt")]
+        [BlobOutput("articles-text-output/{name}")]
         public static async Task<string> Run(
             [BlobTrigger("articles-text-input/{name}")] string myTriggerItem,
             FunctionContext context)
